@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>Sprawdzanie hasła</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        function test_str() {
+            var res;
+            var str = document.getElementById("t1").value;
+            if (str.match(/[a-z]/g) && str.match(
+                    /[A-Z]/g) && str.match(
+                    /[0-9]/g) && str.match(
+                    /[^a-zA-Z\d]/g) && str.length >= 8)
+                res = "TRUE";
+            else
+                res = "FALSE";
+            document.getElementById("t3").value = res;
+        }
+        function confirm_pass(x, y){
+        if (test.str(x)===test.str(y))(
+        document.getElementById("t3").value = "the same"
+        ) else
+        document.getElementById("t3").value = "not the same"        )
+        }
+    </script>
+</head>
+
+<body>
+<p>
+    Hasło
+    <input type="password" id="t1" onkeyup="test_str()" />
+    <br/>
+    <br/>Powtórz hasło
+    <input type="password" id="t2" onkeyup="test_str()" />
+    <br/>
+    <br/>Czy hasła są takie same?
+    <input type="text" id="t3" />
+</p>
+</body>
+
+</html>
