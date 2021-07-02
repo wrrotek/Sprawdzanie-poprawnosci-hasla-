@@ -7,44 +7,54 @@
 <body>
 <div>
     <p>Hasło</p>
-    <input type="text" id="fname1" onkeyup="myFunction()">
+    <input type="text" id="password" onkeyup="myFunction()">
     <div style="color:red" id="too-short-passwd-msg">Za krótkie hasło. Min. 8 znaków.</div>
     <div style="color:red" id="without-uppercase-letter-passwd-msg">Min 1 duża litera</div>
     <div style="color:red" id="without-lowercase-letter-passwd-msg">Min 1 mała litera</div>
     <div style="color:red" id="without-special-sign-passwd-msg">Min 1 znak specjalny</div>
+
+    <p>Powtórz hasło</p>
+    <input type="text" id="repeated_password" onkeyup="myFunction2()">
+    <div style="color:red" id="match">Hasła są różne</div>
 </div>
-<p>Powtórz hasło</p>
-<input type="text" id="fname2" onkeyup="myFunction2()">
-<div style="color:red" id="match">Hasła są różne</div>
+
 
 <script>
         function myFunction() {
-          var x = document.getElementById("fname1");
+          var x = document.getElementById("password");
           if (x.value.length >= 8) {
           document.getElementById("too-short-passwd-msg").hidden = true;
+            } else {
+            document.getElementById("too-short-passwd-msg").hidden = false;
+               }
 
-            }
-            if (x.value.match(/[A-Z]/g)) {
-                document.getElementById("without-uppercase-letter-passwd-msg").hidden = true;
-            }
+          if (x.value.match(/[A-Z]/g)) {
+              document.getElementById("without-uppercase-letter-passwd-msg").hidden = true;
+          } else {
+            document.getElementById("without-uppercase-letter-passwd-msg").hidden = false;
+             }
 
           if (x.value.match(/[^a-zA-Z\d]/g)) {
-                document.getElementById("without-special-sign-passwd-msg").hidden = true;
-            }
+              document.getElementById("without-special-sign-passwd-msg").hidden = true;
+            } else {
+                document.getElementById("without-special-sign-passwd-msg").hidden = false;
+             }
 
           if (x.value.match(/[a-z]/g)) {
-                document.getElementById("without-lowercase-letter-passwd-msg").hidden = true;
-            }
+              document.getElementById("without-lowercase-letter-passwd-msg").hidden = true;
+          } else {
+            document.getElementById("without-lowercase-letter-passwd-msg").hidden = false;
+              }
         }
 
         function myFunction2() {
-          var y = document.getElementById("fname2");
-          var x = document.getElementById("fname1");
-
+          var y = document.getElementById("repeated_password");
+          var x = document.getElementById("password");
           if (y.value.match(x.value)) {
-                console.log('yes');
                 document.getElementById("match").hidden = true;
-            }
+            } else {
+                document.getElementById("match").hidden = false;
+                }
         }
 </script>
 </body>
