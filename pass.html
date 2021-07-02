@@ -3,39 +3,49 @@
 <head>
     <title>Sprawdzanie hasła</title>
     <meta charset="UTF-8">
-    <script type="text/javascript">
-        function test_str() {
-            var res;
-            var str = document.getElementById("t1").value;
-            if (str.match(/[a-z]/g) && str.match(
-                    /[A-Z]/g) && str.match(
-                    /[0-9]/g) && str.match(
-                    /[^a-zA-Z\d]/g) && str.length >= 8)
-                res = "TRUE";
-            else
-                res = "FALSE";
-            document.getElementById("t3").value = res;
-        }
-        function confirm_pass(x, y){
-        if (test.str(x)===test.str(y))(
-        document.getElementById("t3").value = "the same"
-        ) else
-        document.getElementById("t3").value = "not the same"        )
-        }
-    </script>
 </head>
-
 <body>
-<p>
-    Hasło
-    <input type="password" id="t1" onkeyup="test_str()" />
-    <br/>
-    <br/>Powtórz hasło
-    <input type="password" id="t2" onkeyup="test_str()" />
-    <br/>
-    <br/>Czy hasła są takie same?
-    <input type="text" id="t3" />
-</p>
-</body>
+<div>
+    <p>Hasło</p>
+    <input type="text" id="fname1" onkeyup="myFunction()">
+    <div style="color:red" id="too-short-passwd-msg">Za krótkie hasło. Min. 8 znaków.</div>
+    <div style="color:red" id="without-uppercase-letter-passwd-msg">Min 1 duża litera</div>
+    <div style="color:red" id="without-lowercase-letter-passwd-msg">Min 1 mała litera</div>
+    <div style="color:red" id="without-special-sign-passwd-msg">Min 1 znak specjalny</div>
+</div>
+<p>Powtórz hasło</p>
+<input type="text" id="fname2" onkeyup="myFunction2()">
+<div style="color:red" id="match">Hasła są różne</div>
 
+<script>
+        function myFunction() {
+          var x = document.getElementById("fname1");
+          if (x.value.length >= 8) {
+          document.getElementById("too-short-passwd-msg").hidden = true;
+
+            }
+            if (x.value.match(/[A-Z]/g)) {
+                document.getElementById("without-uppercase-letter-passwd-msg").hidden = true;
+            }
+
+          if (x.value.match(/[^a-zA-Z\d]/g)) {
+                document.getElementById("without-special-sign-passwd-msg").hidden = true;
+            }
+
+          if (x.value.match(/[a-z]/g)) {
+                document.getElementById("without-lowercase-letter-passwd-msg").hidden = true;
+            }
+        }
+
+        function myFunction2() {
+          var y = document.getElementById("fname2");
+          var x = document.getElementById("fname1");
+
+          if (y.value.match(x.value)) {
+                console.log('yes');
+                document.getElementById("match").hidden = true;
+            }
+        }
+</script>
+</body>
 </html>
